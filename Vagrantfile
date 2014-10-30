@@ -18,6 +18,8 @@ Vagrant.configure("2") do |config|
     config.vm.provider :virtualbox do |v|
         v.name = (0...8).map { (65 + rand(26)).chr }.join
         v.customize [ "modifyvm", :id, "--memory", 512 ]
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]        
     end
 
     # Provision the box
